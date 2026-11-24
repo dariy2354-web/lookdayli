@@ -1,0 +1,339 @@
+index.html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f7f4ee">
+<title>Lookdayli — Твой персональный ИИ-стилист</title>
+<meta name="description" content="Lookdayli — умный гардероб и персональный ИИ-стилист. Подбирай образы на каждый день.">
+<style>
+:root {
+  --bg:#f7f4ee;
+  --dark:#25251f;
+  --muted:#77766d;
+  --gold:#b69a72;
+  --cream:#e9e1d4;
+  --white:#fffefa;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+ font-family:Arial,Helvetica,sans-serif;
+ background:var(--bg);color:var(--dark);
+ line-height:1.6;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+.container{width:min(1160px,90%);margin:auto}
+header{
+ position:sticky;top:0;z-index:10;
+ background:#f7f4eef2;backdrop-filter:blur(12px);
+ border-bottom:1px solid #e7e1d8;
+}
+nav{height:76px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:Georgia,serif;font-size:27px;font-weight:bold;letter-spacing:-1px}
+.logo span{color:var(--gold)}
+.navlinks{display:flex;gap:30px;font-size:14px}
+.navlinks a:hover{color:var(--gold)}
+.navbtn,.primary{
+ background:var(--dark);color:white;border:0;
+ border-radius:30px;padding:13px 23px;
+ display:inline-block;transition:.2s;
+}
+.navbtn:hover,.primary:hover{background:var(--gold);transform:translateY(-2px)}
+.menu{display:none;background:none;border:0;font-size:25px}
+.hero{
+ min-height:610px;display:grid;
+ grid-template-columns:1fr 1fr;align-items:center;gap:45px;
+ padding:75px 0;
+}
+.eyebrow{color:#9b805a;text-transform:uppercase;letter-spacing:3px;font-size:11px;font-weight:bold}
+h1{
+ font-family:Georgia,serif;font-size:clamp(45px,6vw,76px);
+ line-height:1.08;font-weight:normal;margin:22px 0;
+}
+h1 em{color:var(--gold);font-weight:normal}
+.hero p{color:var(--muted);font-size:17px;max-width:470px;margin-bottom:30px}
+.heroimage{
+ min-height:460px;border-radius:220px 220px 18px 18px;
+ background:linear-gradient(0deg,#312a21aa,#312a2100),
+ url('https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=1100') center/cover;
+ position:relative;
+}
+.image-label{
+ position:absolute;bottom:25px;left:25px;
+ color:white;font-family:Georgia,serif;font-size:23px;
+}
+section{padding:90px 0}
+.sectionhead{text-align:center;max-width:650px;margin:0 auto 48px}
+.sectionhead h2{font:normal clamp(34px,4vw,48px) Georgia,serif;margin:12px 0}
+.sectionhead p{color:var(--muted)}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.feature{
+ background:var(--white);padding:30px;border-radius:18px;
+ border:1px solid #eee9df;
+}
+.feature .symbol{font-size:30px;margin-bottom:18px}
+.feature h3{font:normal 23px Georgia,serif;margin-bottom:10px}
+.feature p{color:var(--muted);font-size:14px}
+.steps{background:#eae4d9}
+.stepgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:35px}
+.stepnum{font:normal 45px Georgia,serif;color:var(--gold)}
+.step h3{font:normal 23px Georgia,serif;margin:10px 0}
+.step p{color:var(--muted);font-size:14px}
+.pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.plan{
+ background:var(--white);border:1px solid #e9e3d9;
+ padding:32px 27px;border-radius:20px;position:relative;
+ display:flex;flex-direction:column;
+}
+.plan.popular{border:2px solid var(--gold);transform:translateY(-9px)}
+.popular-tag{
+ position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+ background:var(--gold);color:white;border-radius:20px;
+ padding:5px 17px;font-size:11px;white-space:nowrap;
+}
+.plan h3{font:normal 27px Georgia,serif}
+.price{font:normal 39px Georgia,serif;margin:14px 0 5px}
+.price small{font:normal 13px Arial;color:var(--muted)}
+.plan-desc{color:var(--muted);font-size:13px;margin-bottom:20px}
+.plan ul{list-style:none;margin:10px 0 28px;flex:1}
+.plan li{padding:9px 0;border-bottom:1px solid #eee9e0;font-size:14px}
+.plan li:before{content:"✓";color:#a48961;margin-right:10px}
+.plan .primary{width:100%;text-align:center}
+.plan.dark{background:#292921;color:white;border:0}
+.plan.dark .plan-desc,.plan.dark .price small{color:#d0c8ba}
+.plan.dark li{border-color:#49473f}
+.dark .primary{background:var(--gold)}
+.banner{
+ background:var(--dark);color:white;border-radius:24px;
+ padding:65px 35px;text-align:center;
+}
+.banner h2{font:normal clamp(34px,5vw,52px) Georgia,serif;margin-bottom:15px}
+.banner p{color:#d0c8ba;margin-bottom:25px}
+.banner .primary{background:var(--gold)}
+.support{
+ display:flex;align-items:center;justify-content:space-between;
+ gap:25px;background:var(--cream);padding:35px;border-radius:20px;
+}
+.support h2{font:normal 30px Georgia,serif}
+.support p{color:var(--muted);font-size:14px}
+.phone{font-size:23px;font-weight:bold;white-space:nowrap}
+footer{padding:35px 0;color:var(--muted);font-size:13px}
+.footerinner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:760px){
+ .navlinks{
+ display:none;position:absolute;top:76px;left:0;right:0;
+ background:var(--bg);padding:25px;flex-direction:column;
+ border-bottom:1px solid #ddd;
+ }
+ .navlinks.open{display:flex}
+ .menu{display:block}
+ .navbtn{display:none}
+ .hero{grid-template-columns:1fr;padding:55px 0}
+ .heroimage{min-height:380px}
+ .features,.pricing,.stepgrid{grid-template-columns:1fr}
+ .plan.popular{transform:none;margin-top:12px}
+ section{padding:65px 0}
+ .support{flex-direction:column;align-items:flex-start}
+ .phone{font-size:20px}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="container">
+  <nav>
+   <a class="logo" href="#">Look<span>dayli.</span></a>
+   <div class="navlinks" id="navlinks">
+    <a href="#features">Возможности</a>
+    <a href="#how">Как работает</a>
+    <a href="#pricing">Тарифы</a>
+    <a href="#support">Поддержка</a>
+   </div>
+   <a class="navbtn" href="#pricing">Выбрать тариф</a>
+   <button class="menu" onclick="document.getElementById('navlinks').classList.toggle('open')" aria-label="Открыть меню">☰</button>
+  </nav>
+ </div>
+</header>
+
+<main>
+<div class="container">
+ <section class="hero">
+  <div>
+   <div class="eyebrow">Your style. Your everyday.</div>
+   <h1>Каждый день —<br>твой <em>идеальный</em> образ</h1>
+   <p>Твой личный умный гардероб. Забудь о вопросе «Что надеть сегодня?». Lookdayli подберёт образ под погоду, настроение и повод.</p>
+   <a class="primary" href="#pricing">Найти свой стиль →</a>
+  </div>
+  <div class="heroimage">
+   <div class="image-label">Style is your everyday story.</div>
+  </div>
+ </section>
+</div>
+
+<section id="features">
+ <div class="container">
+  <div class="sectionhead">
+   <div class="eyebrow">Discover Lookdayli</div>
+   <h2>Твой гардероб стал умнее</h2>
+   <p>Всё необходимое для стильной жизни — в одном приложении.</p>
+  </div>
+  <div class="features">
+   <article class="feature">
+    <div class="symbol">♧</div>
+    <h3>Умный гардероб</h3>
+    <p>Загружай фотографии своих вещей и создавай собственную цифровую коллекцию одежды.</p>
+   </article>
+   <article class="feature">
+    <div class="symbol">✧</div>
+    <h3>Подбор образов</h3>
+    <p>Получай сочетания одежды для работы, прогулок, свиданий и особенных событий.</p>
+   </article>
+   <article class="feature">
+    <div class="symbol">☼</div>
+    <h3>Стиль по погоде</h3>
+    <p>Подбирай одежду с учётом погоды и температуры за окном.</p>
+   </article>
+   <article class="feature">
+    <div class="symbol">◉</div>
+    <h3>Твой цветотип</h3>
+    <p>Загрузи фотографию, чтобы получить рекомендации по подходящим оттенкам.</p>
+   </article>
+   <article class="feature">
+    <div class="symbol">✿</div>
+    <h3>ИИ-стилист</h3>
+    <p>Персональные советы и новые идеи для твоего неповторимого стиля.</p>
+   </article>
+   <article class="feature">
+    <div class="symbol">♡</div>
+    <h3>Больше времени</h3>
+    <p>Заранее планируй образы и трать меньше времени на ежедневные сборы.</p>
+   </article>
+  </div>
+ </div>
+</section>
+
+<section class="steps" id="how">
+ <div class="container">
+  <div class="sectionhead">
+   <div class="eyebrow">Simple as 1, 2, 3</div>
+   <h2>Как это работает?</h2>
+   <p>Три простых шага к гардеробу, который работает на тебя.</p>
+  </div>
+  <div class="stepgrid">
+   <div class="step">
+    <div class="stepnum">01</div>
+    <h3>Добавь свои вещи</h3>
+    <p>Сфотографируй одежду и загрузи её в цифровой гардероб.</p>
+   </div>
+   <div class="step">
+    <div class="stepnum">02</div>
+    <h3>Выбери повод</h3>
+    <p>Укажи ситуацию, настроение или просто доверь выбор искусственному интеллекту.</p>
+   </div>
+   <div class="step">
+    <div class="stepnum">03</div>
+    <h3>Получай свой образ</h3>
+    <p>Открывай готовые сочетания и вдохновляйся каждый день.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="pricing">
+ <div class="container">
+  <div class="sectionhead">
+   <div class="eyebrow">Choose your experience</div>
+   <h2>Тарифы Lookdayli</h2>
+   <p>Начни бесплатно или открой больше возможностей с премиум-подпиской.</p>
+  </div>
+  <div class="pricing">
+   <article class="plan">
+    <h3>FREE</h3>
+    <div class="price">0 ₸</div>
+    <p class="plan-desc">Начни знакомство со своим умным гардеробом.</p>
+    <ul>
+     <li>До 100 вещей</li>
+     <li>Личный цифровой гардероб</li>
+     <li>Подбор образов на разные случаи жизни</li>
+    </ul>
+    <a class="primary" href="#support">Начать бесплатно</a>
+   </article>
+
+   <article class="plan popular">
+    <div class="popular-tag">ВЫБОР ПОЛЬЗОВАТЕЛЕЙ</div>
+    <h3>COMFORT</h3>
+    <div class="price">599 ₸<small> / месяц</small></div>
+    <p class="plan-desc">Больше комфорта и меньше времени на сборы.</p>
+    <ul>
+     <li>До 500 вещей</li>
+     <li>Готовые образы на каждую неделю</li>
+     <li>Подбор одежды под погоду</li>
+     <li>Определение цветотипа по фото</li>
+     <li>Рекомендации по покупкам</li>
+    </ul>
+    <a class="primary" href="#support">Выбрать Comfort</a>
+   </article>
+
+   <article class="plan dark">
+    <h3>PREMIUM</h3>
+    <div class="price">Безлимит</div>
+    <p class="plan-desc">Максимальная свобода и персональный стиль.</p>
+    <ul>
+     <li>Неограниченное количество вещей</li>
+     <li>Все возможности Comfort</li>
+     <li>Персональный ИИ-стилист</li>
+     <li>Образы для тематических праздников</li>
+     <li>Индивидуальные рекомендации</li>
+    </ul>
+    <a class="primary" href="#support">Выбрать Premium</a>
+   </article>
+  </div>
+ </div>
+</section>
+
+<section>
+ <div class="container">
+  <div class="banner">
+   <div class="eyebrow">Your wardrobe. Reimagined.</div>
+   <h2>Стиль начинается с тебя</h2>
+   <p>Открой новый подход к одежде вместе с Lookdayli.</p>
+   <a class="primary" href="#pricing">Выбрать свой тариф →</a>
+  </div>
+ </div>
+</section>
+
+<section id="support">
+ <div class="container">
+  <div class="support">
+   <div>
+    <div class="eyebrow">We are here for you</div>
+    <h2>Нужна помощь?</h2>
+    <p>Наша служба поддержки поможет разобраться с Lookdayli и тарифами.</p>
+   </div>
+   <a class="phone" href="tel:+77011595126">☎ 87011595126</a>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="container footerinner">
+  <a class="logo" href="#">Look<span>dayli.</span></a>
+  <span>©️ 2026 Lookdayli. Все права защищены.</span>
+  <a href="tel:+77011595126">Служба поддержки</a>
+ </div>
+</footer>
+
+<script>
+document.querySelectorAll('.navlinks a').forEach(link=>{
+ link.addEventListener('click',()=>{
+  document.getElementById('navlinks').classList.remove('open');
+ });
+});
+</script>
+</body>
+</html>
